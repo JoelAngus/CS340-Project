@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>Order_header</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1>Order_allocation</h1>
+
+[ <a href="customers.html">Customers</a> | <a href="employee.html">Employee</a> |  <a href="inventory.html">Inventory</a> |  <a href="order_allocation.html">Order Allocation</a> |  <a href="order_header.html">Order Header</a> |  <a href="Order_header.html">Order Item</a> |  <a href="products.html">Products</a> ]
+<div id="browse" style="display: block">
+<p><strong>Browse Order_allocations</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th></th>
+    <th>order_allocation_id</th>
+    <th>order_item_id</th>
+    <th>product_inventory_id</th>
+    <th>allocated_quantity</th>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >1</td>
+    <td >1</td>
+    <td align="right" >1</td>
+    <td>9</td>
+
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >2</td>
+    <td>1</td>
+    <td align="right" >2</td>
+    <td>1</td>
+
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td>3</td>
+    <td>1</td>
+    <td align="right" >3</td>
+    <td>2</td>
+
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert" style="display: block">
+    <form id="addOrder_header">
+        <legend><strong>Add Order_allocation</strong></legend>
+          <fieldset class="fields">
+            <label> order_item_id </label> <input type="text" name="order_item_id">
+            <label> product_inventory_id </label> <input type="text" name="product_inventory_id">
+            <label> allocated_quantity </label> <input type="text" name="allocated_quantity">
+          </fieldset>
+          <input class="btn" type="submit" id="addOrder_header" value="Add an Order_allocation">
+          <input class="btn" type="button" value="cancel">
+	</form> <!--add new Order_header-->
+</div><!-- insert -->
+
+<p>&nbsp;</p>
+<div id="update" style="display: block">
+  <form id="updateOrder_allocation">
+      <legend><strong>Update Order_allocation</strong></legend>
+          <fieldset class="fields">
+          <label>order_allocation_id:</label> 1
+            <label> order_item_id </label> <input type="text" value="1" name="order_item_id">
+            <label> product_inventory_id </label> <input type="text"  name="product_inventory_id" value="1">
+            <label> allocated_quantity </label> <input type="text" name="allocated_quantity" value="3">
+
+    </fieldset>
+    <input class="btn" type="submit" id="UpdateSaveOrder_header" value="Save Update Order_allocation">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form id="deleteOrder_header">
+      <legend><strong>Delete Order_allocation</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <label>order_allocation_id:</label> 1
+            <label> allocated_quantity </label> 9
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteOrder_allocation" value="Delete Order_allocation">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- delete -->
+</body>
+</html>

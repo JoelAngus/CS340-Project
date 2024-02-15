@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>Customers</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1>Customers</h1>
+
+[ <a href="customers.html">Customers</a> | <a href="employee.html">Employee</a> |  <a href="inventory.html">Inventory</a> |  <a href="order_allocation.html">Order Allocation</a> |  <a href="order_header.html">Order Header</a> |  <a href="order_item.html">Order Item</a> |  <a href="products.html">Products</a> ]
+<div id="browse" style="display: block">
+<p><strong>Browse Customers</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th></th>
+    <th>ID</th>
+    <th>name</th>
+    <th>email</th>
+    <th>phone_number</th>
+    <th>cust_join_date</th>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >1</td>
+    <td >Dylan</td>
+    <td align="right" >dylanMe@test.com</td>
+    <td>123-456-7890</td>
+    <td>1-2-2003</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >2</td>
+    <td >Zach</td>
+    <td align="right" >zachMe@test.com</td>
+    <td>111-456-7890</td>
+    <td>3-4-2003</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >1</td>
+    <td >Alex</td>
+    <td align="right" >alexMe@test.com</td>
+    <td>233-456-7890</td>
+    <td>9-9-2003</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert" style="display: block">
+    <form id="addCustomer">
+        <legend><strong>Add Customer</strong></legend>
+          <fieldset class="fields">
+            <label> Name </label> <input type="text" name="name">
+            <label> Email </label> <input type="text" name="email">
+            <label> Phone </label> <input type="text" name="phone">
+            <label> Date_Joined </label> <input type="text" name="date_joined">
+          </fieldset>
+          <input class="btn" type="submit" id="addCustomer" value="Add a Customer">
+          <input class="btn" type="button" value="cancel">
+	</form> <!--add new planet-->
+</div><!-- insert -->
+
+<p>&nbsp;</p>
+<div id="update" style="display: block">
+  <form id="updateCustomer">
+      <legend><strong>Update Customer</strong></legend>
+          <fieldset class="fields">
+          <label>ID:</label> 1
+            <label> Name </label> <input type="text" name="name" value="Dylan">
+            <label> Email </label> <input type="text"  name="email" value="dylanMe@test.com">
+            <label> Phone </label> <input type="text" name="phone" value="123-456-7890">
+            <label> Date_Joined </label> <input type="text" name="date_joined" value="1-1-2003">
+    </fieldset>
+    <input class="btn" type="submit" id="UpdateSaveCustomer" value="Save Update Customer">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form id="deleteCustomer">
+      <legend><strong>Delete Customer</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <label>ID:</label> 1
+            <label> Name </label> Dylan
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteCustomer" value="Delete Customer">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- delete -->
+</body>
+</html>

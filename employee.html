@@ -1,33 +1,33 @@
 <html>
 <head>
-<title>Employees</title>
+<title>Employee</title>
 <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-<h1>Employees</h1>
+<h1>Employee</h1>
 
-[ <a href="customers.html">Customers</a> | <a href="employee.html">Employee</a> |  <a href="inventory.html">Inventory</a> |  <a href="order_allocation.html">Order Allocation</a> |  <a href="order_header.html">Order Header</a> |  <a href="order_item.html">Order Item</a> |  <a href="products.html">Products</a> ]
+[ <a href="customer.html">Customers</a> | <a href="employee.html">Employee</a> |  <a href="inventory.html">Inventory</a> |  <a href="order_allocation.html">Order Allocation</a> |  <a href="order_header.html">Order Header</a> |  <a href="order_item.html">Order Item</a> |  <a href="products.html">Products</a> ]
 <div id="browse" style="display: block">
-<p><strong>Browse Employees</strong></p>
+<p><strong>Browse Employee</strong></p>
 <table border="1" cellpadding="5">
   <tr>
     <th><a href="#">New</a></th>
     <th></th>
     <th>employee_id</th>
-    <th>hourly_wage</th>
-    <th>emp_name</th>
-    <th>emp_email</th>
-    <th>emp_phone_num</th>
-    <th>date_hired</th>
+    <th>employee_first_name</th>
+    <th>employee_last_name</th>
+    <th>employee_email</th>
+    <th>employee_phone_num</th>
+    <th>employee_date_hired</th>
   </tr>
   <tr>
     <td><a href="#">Edit</a></td>
     <td><a href="#">Delete</a></td>
     <td align="right" >1</td>
-    <td >10</td>
-    <td >Pat</td>
-    <td align="right" >patMe@test.com</td>
+    <td >Dylan</td>
+    <td >Bem</td>
+    <td align="right" >dylanMe@test.com</td>
     <td>123-456-7890</td>
     <td>1-2-2003</td>
   </tr>
@@ -35,19 +35,19 @@
     <td><a href="#">Edit</a></td>
     <td><a href="#">Delete</a></td>
     <td align="right" >2</td>
-    <td >11</td>
-    <td >Anders</td>
-    <td align="right" >andersMe@test.com</td>
+    <td >Zach</td>
+    <td >Al</td>
+    <td align="right" >zachMe@test.com</td>
     <td>111-456-7890</td>
     <td>3-4-2003</td>
   </tr>
   <tr>
     <td><a href="#">Edit</a></td>
     <td><a href="#">Delete</a></td>
-    <td align="right" >3</td>
-    <td >5</td>
-    <td >Kyle</td>
-    <td align="right" >kyleMe@test.com</td>
+    <td align="right" >1</td>
+    <td >Alex</td>
+    <td >Mont</td>
+    <td align="right" >alexMe@test.com</td>
     <td>233-456-7890</td>
     <td>9-9-2003</td>
   </tr>
@@ -55,31 +55,31 @@
 <p>&nbsp;</p>
 </div> <!-- browse -->
 <div id="insert" style="display: block">
-    <form id="addEmployee">
+    <form id="addemployee">
         <legend><strong>Add Employee</strong></legend>
           <fieldset class="fields">
-            <label> Hourly Wage </label> <input type="text" name="hourly_wage">
-            <label> Name </label> <input type="text" name="emp_name">
-            <label> Email </label> <input type="text" name="emp_email">
-            <label> Phone </label> <input type="text" name="emp_phone_num">
-            <label> Date Hired </label> <input type="text" name="date_hired">
+            <label> First Name</label> <input type="text" name="employee_first_name">
+            <label> Last Name </label> <input type="text" name="employee_last_name">
+            <label> Email </label> <input type="text" name="employee_email">
+            <label> Phone </label> <input type="text" name="employee_phone_num">
+            <label> Date_hired </label> <input type="text" name="employee_date_hired>
           </fieldset>
-          <input class="btn" type="submit" id="addEmployee" value="Add a Employee">
+          <input class="btn" type="submit" id="addemployee" value="Add a employee">
           <input class="btn" type="button" value="cancel">
 	</form> <!--add new planet-->
 </div><!-- insert -->
 
 <p>&nbsp;</p>
 <div id="update" style="display: block">
-  <form id="updateEmployee">
+  <form id="updateemployee">
       <legend><strong>Update Employee</strong></legend>
           <fieldset class="fields">
           <label>ID:</label> 1
-          <label> Hourly Wage </label> <input type="text" name="hourly_wage" value="13">
-            <label> Name </label> <input type="text" name="emp_name" value="Pat">
-            <label> Email </label> <input type="text"  name="emp_email" value="patMe@test.com">
-            <label> Phone </label> <input type="text" name="emp_phone_num" value="123-456-7890">
-            <label> Date Hired </label> <input type="text" name="date_hired" value="1-1-2003">
+            <label> First Name </label> <input type="text" name="employee_first_name" value="Dylan">
+            <label> Last Name </label> <input type="text" name="employee_last_name" value="Dylan">
+            <label> Email </label> <input type="text"  name="employee_email" value="dylanMe@test.com">
+            <label> Phone </label> <input type="text" name="employee_phone_num" value="123-456-7890">
+            <label> Date Hired </label> <input type="text" name="employee_date_hired" value="1-1-2003">
     </fieldset>
     <input class="btn" type="submit" id="UpdateSaveEmployee" value="Save Update Employee">
           <input class="btn" type="button" value="cancel" >
@@ -92,7 +92,7 @@
           <fieldset class="fields">
           <p>Are you sure you wish to delete the following?</p>
           <label>ID:</label> 1
-            <label> Name </label> Pat
+            <label> Name </label> Dylan
             
     </fieldset>
     <input class="btn" type="submit" id="DeleteEmployee" value="Delete Employee">

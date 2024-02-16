@@ -296,7 +296,7 @@ VALUES
 
 INSERT INTO order_allocation(
    order_item_id,
-   Product_inventory_id,
+   product_inventory_id,
    allocated_quantity)
 VALUES
 (

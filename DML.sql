@@ -1,4 +1,3 @@
-
 --Daniel Nikolov and Joel Angus (Group 117)
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -80,24 +79,24 @@ INSERT INTO products(
 
 VALUES
 (
-    "Black pants",
-    TRUE,
-    "pants",
-    9.75
+    :product_name,
+    :product_is_clearance,
+    :product_type,
+    :product_retail_price
 
 
 ),
 (
-    "Green Shoes",
-    FALSE,
-    "shoes",
-    10.75
+    :product_name,
+    :product_is_clearance,
+    :product_type,
+    :product_retail_price
 ),
 (
-    "Orange jacket",
-    TRUE,
-    "jacket",
-    14.97
+    :product_name,
+    :product_is_clearance,
+    :product_type,
+    :product_retail_price
 );
 
 
@@ -143,25 +142,25 @@ INSERT INTO order_header(
 
 VALUES
 (
-    (SELECT customer_id FROM customer WHERE customer_first_name = "Ananya" AND customer_last_name = "Jaiswal"),
-    (SELECT employee_id FROM employee WHERE employee_first_name = "Alex" AND employee_last_name = "Montgomery" ),
-    '2020-11-19',
-    TRUE,
-    FALSE
+    :customer_id,
+    :employee_id,
+    :order_date,
+    :is_return,
+    :is_online_order
 ),
 (
-    (SELECT customer_id FROM customer WHERE customer_first_name = "Michael" AND customer_last_name = "Fern"),
-    (SELECT employee_id FROM employee WHERE employee_first_name = "Zach" AND employee_last_name = "Allen" ),
-    '2020-12-05',
-    FALSE,
-    FALSE
+    :customer_id,
+    :employee_id,
+    :order_date,
+    :is_return,
+    :is_online_order
 ),
 (
-    (SELECT customer_id FROM customer WHERE customer_first_name = "Abdul" AND customer_last_name = "Rehman"),
-    (SELECT employee_id FROM employee WHERE employee_first_name = "Dylan" AND employee_last_name = "Brehm" ),
-    '2021-01-01',
-    FALSE,
-    TRUE
+    :customer_id,
+    :employee_id,
+    :order_date,
+    :is_return,
+    :is_online_order
 );
 
 
@@ -174,29 +173,29 @@ INSERT INTO order_item(
 )
 VALUES
 (
-   (SELECT product_id FROM products WHERE product_name = "Black pants"),
-   (SELECT order_header_id FROM order_header WHERE order_header_id = 1),
-   10
+   :product_id,
+   :order_header_id,
+   :quantity
 ),
 (
-   (SELECT product_id FROM products WHERE product_name = "Green shoes"),
-   (SELECT order_header_id FROM order_header WHERE order_header_id = 1),
-   2
+   :product_id,
+   :order_header_id,
+   :quantity
 ),
 (
-   (SELECT product_id FROM products WHERE product_name = "Black pants"),
-   (SELECT order_header_id FROM order_header WHERE order_header_id = 2),
-   1
+   :product_id,
+   :order_header_id,
+   :quantity
 ),
 (
-   (SELECT product_id FROM products WHERE product_name = "Green shoes"),
-   (SELECT order_header_id FROM order_header WHERE order_header_id = 2),
-   1
+   :product_id,
+   :order_header_id,
+   :quantity
 ),
 (
-   (SELECT product_id FROM products WHERE product_name = "Black pants"),
-   (SELECT order_header_id FROM order_header WHERE order_header_id = 3),
-   1
+   :product_id,
+   :order_header_id,
+   :quantity
 );
 
 
@@ -204,38 +203,38 @@ VALUES
 
 INSERT INTO order_allocation(
    order_item_id,
-   Product_inventory_id,
+   product_inventory_id,
    allocated_quantity)
 VALUES
 (
-   (SELECT order_item_id FROM order_item WHERE order_item_id = 1),
-   (SELECT product_inventory_id FROM inventory WHERE product_inventory_id = 1 AND onhand_quantity = 9),
-   9
+   :order_item_id,
+   :product_inventory_id,
+   :allocated_quantity
 ),
 (
-   (SELECT order_item_id FROM order_item WHERE order_item_id = 1),
-   (SELECT product_inventory_id FROM inventory WHERE product_inventory_id = 2 AND onhand_quantity = 3),
-   1
+   :order_item_id,
+   :product_inventory_id,
+   :allocated_quantity
 ),
 (
-   (SELECT order_item_id FROM order_item WHERE order_item_id = 1),
-   (SELECT product_inventory_id FROM inventory WHERE product_inventory_id = 3 AND onhand_quantity = 20),
-   2
+   :order_item_id,
+   :product_inventory_id,
+   :allocated_quantity
 ),
 (
-   (SELECT order_item_id FROM order_item WHERE order_item_id = 2),
-   (SELECT product_inventory_id FROM inventory WHERE product_inventory_id = 2 AND onhand_quantity = 3),
-   1
+   :order_item_id,
+   :product_inventory_id,
+   :allocated_quantity
 ),
 (
-   (SELECT order_item_id FROM order_item WHERE order_item_id = 2),
-   (SELECT product_inventory_id FROM inventory WHERE product_inventory_id = 3 AND onhand_quantity = 20),
-   1
+   :order_item_id,
+   :product_inventory_id,
+   :allocated_quantity
 ),
 (
-   (SELECT order_item_id FROM order_item WHERE order_item_id = 3),
-   (SELECT product_inventory_id FROM inventory WHERE product_inventory_id = 2 AND onhand_quantity = 3),
-   1
+   :order_item_id,
+   :product_inventory_id,
+   :allocated_quantity
 );
 
 

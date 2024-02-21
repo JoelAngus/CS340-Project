@@ -7,8 +7,8 @@ CREATE OR REPLACE TABLE customer (
     customer_id INT NOT NULL AUTO_INCREMENT,
     customer_first_name VARCHAR(255) NOT NULL,
     customer_last_name VARCHAR(255) NOT NULL,
-    customer_email VARCHAR(255) NOT NULL,
-    customer_phone_num VARCHAR(255) NOT NULL,
+    customer_email VARCHAR(255),
+    customer_phone_num VARCHAR(255),
     customer_date_joined DATE NOT NULL,
     PRIMARY KEY (customer_id)
 );
@@ -21,8 +21,8 @@ CREATE OR REPLACE TABLE employee (
     employee_first_name VARCHAR(255) NOT NULL,
     employee_last_name VARCHAR(255) NOT NULL,
     employee_date_hired DATE NOT NULL,
-    employee_email VARCHAR(255) NOT NULL,
-    employee_phone_num VARCHAR(255) NOT NULL,
+    employee_email VARCHAR(255),
+    employee_phone_num VARCHAR(255),
     PRIMARY KEY (employee_id)
 );
 
@@ -49,7 +49,7 @@ CREATE OR REPLACE TABLE order_header (
     is_return BOOLEAN NOT NULL,
     is_online_order BOOLEAN NOT NULL,
     PRIMARY KEY (order_header_id),
-    FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE,
     FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
 

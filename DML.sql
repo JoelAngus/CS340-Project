@@ -236,7 +236,3 @@ VALUES
    :product_inventory_id,
    :allocated_quantity
 );
-
-
-
-

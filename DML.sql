@@ -236,3 +236,9 @@ VALUES
    :product_inventory_id,
    :allocated_quantity
 );
+
+SELECT order_item.order_header_id, (order_header.order_date)
+FROM order_item 
+   INNER JOIN order_header ON order_header.order_header_id = order_item.order_header_id;
+
+

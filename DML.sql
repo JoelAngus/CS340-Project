@@ -33,6 +33,8 @@ VALUES
 );
 
 
+
+
 INSERT INTO employee(
     employee_first_name,
     employee_last_name,
@@ -237,6 +239,7 @@ VALUES
 
 SELECT order_item.order_header_id, (order_header.order_date)
 FROM order_item 
-   INNER JOIN order_header ON order_header.order_header_id = order_item.order_header_id;
+   INNER JOIN order_header ON order_header.order_header_id = order_item.order_header_id
+   WHERE order_header.order_header_id = order_item.order_header_id;
 
 

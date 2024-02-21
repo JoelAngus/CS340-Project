@@ -33,8 +33,6 @@ VALUES
 );
 
 
-
-
 INSERT INTO employee(
     employee_first_name,
     employee_last_name,

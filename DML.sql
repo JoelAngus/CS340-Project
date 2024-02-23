@@ -243,3 +243,37 @@ FROM order_item
    WHERE order_header.order_header_id = order_item.order_header_id;
 
 
+-- Update customer
+UPDATE customer
+SET
+    customer_email = 'new_email_for_alex@example.com',
+    customer_phone_num = 'new_phone_number_for_alex'
+WHERE
+    customer_id = Alex_Mont_customer_id;
+
+-- Update employee
+UPDATE employee
+SET
+    employee_email = 'new_email_for_alex@example.com',
+    employee_phone_num = 'new_phone_number_for_alex'
+WHERE
+    employee_id = Alex_Mont_employee_id;
+    
+-- Delete customers
+DELETE FROM customer WHERE customer_id IN (Alex_Mont_customer_id, Dylan_Bre_customer_id);
+
+-- Delete employees
+DELETE FROM employee WHERE employee_id IN (Alex_Mont_employee_id, Dylan_Bre_employee_id);
+
+-- Delete products
+DELETE FROM products WHERE product_id IN (Alex_Mont_product_id1, Alex_Mont_product_id2, Dylan_Bre_product_id1, Dylan_Bre_product_id2);
+
+-- Delete inventory
+DELETE FROM inventory WHERE product_inventory_id IN (Alex_Mont_inventory_id1, Alex_Mont_inventory_id2, Dylan_Bre_inventory_id1, Dylan_Bre_inventory_id2);
+
+-- Delete orders
+DELETE FROM order_header WHERE order_header_id IN (Alex_Mont_order_header_id1, Alex_Mont_order_header_id2, Dylan_Bre_order_header_id1, Dylan_Bre_order_header_id2);
+
+-- Delete order items and allocations
+DELETE FROM order_item WHERE order_item_id IN (Alex_Mont_order_item_id1, Alex_Mont_order_item_id2, Dylan_Bre_order_item_id1, Dylan_Bre_order_item_id2);
+DELETE FROM order_allocation WHERE order_item_id IN (Alex_Mont_order_item_id1, Alex_Mont_order_item_id2, Dylan_Bre_order_item_id1, Dylan_Bre_order_item_id2);

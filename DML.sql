@@ -243,3 +243,20 @@ FROM order_item
    WHERE order_header.order_header_id = order_item.order_header_id;
 
 
+SELECT order_item.product_id, (products.product_name)
+FROM order_item 
+   INNER JOIN products ON products.product_id = order_item.product_id
+   WHERE products.product_id = order_item.product_id;
+
+
+SELECT order_allocation.order_item_id, (order_item.quantity)
+FROM order_allocation 
+   INNER JOIN order_item ON order_item.order_item_id = order_allocation.order_item_id
+   WHERE order_item.order_item_id = order_allocation.order_item_id;
+
+
+
+SELECT order_allocation.product_inventory_id, (inventory.onhand_quantity)
+FROM order_allocation 
+   INNER JOIN inventory ON inventory.product_inventory_id = order_allocation.product_inventory_id
+   WHERE inventory.product_inventory_id = order_allocation.product_inventory_id;

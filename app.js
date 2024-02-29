@@ -13,7 +13,7 @@ var db = require('./database/db-connector');
 // Handlebars
 var exphbs = require('express-handlebars');
 const { query } = require('express');
-app.engine('.hbs', exphbs({
+app.engine('.hbs', exphbs.engine({
     extname: ".hbs"
 }));
 app.set('view engine', '.hbs');

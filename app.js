@@ -23,16 +23,16 @@ app.set('view engine', '.hbs');
 */
 app.get('/', function(req, res)
     {
-        let query1 = "SELECT * FROM bsg_people;";
+        let query1 = "SELECT * FROM customer;";
         db.pool.query(query1, function(error, rows, fields){
             res.render('index', {data: rows});
         })
     });
     app.get('/customer.html', function(req, res)
     {
-        let query1 = "SELECT * FROM bsg_people;";
+        let query1 = "SELECT * FROM customer;";
         db.pool.query(query1, function(error, rows, fields){
-            res.render('customer', {data: rows});
+            res.render('index', {data: rows});
         })
     });
 

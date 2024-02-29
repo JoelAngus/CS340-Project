@@ -28,6 +28,13 @@ app.get('/', function(req, res)
             res.render('index', {data: rows});
         })
     });
+    app.get('/customer.html', function(req, res)
+    {
+        let query1 = "SELECT * FROM bsg_people;";
+        db.pool.query(query1, function(error, rows, fields){
+            res.render('customer', {data: rows});
+        })
+    });
 
 /*
     LISTENER

@@ -26,152 +26,19 @@ app.use(express.static(__dirname + '/public'));         // this is needed to all
 
 
 app.get('/', function(req, res)
-{
-    // Declare Query 1
-    let query1;
-
-    // If there is no query string, we just perform a basic SELECT
-    if (req.query.lname === undefined)
     {
-        query1 = "SELECT * FROM customer;";
-    }
-
-    // If there is a query string, we assume this is a search, and return desired results
-    else
-    {
-        query1 = `SELECT * FROM customer WHERE customer_last_name LIKE "${req.query.last}%"`
-    }
-
-    // Query 2 is the same in both cases
-    let query2 = "SELECT * FROM customer;";
-
-    // Run the 1st query
-    db.pool.query(query1, function(error, rows, fields){
-        
-        // Save the people
-        let people = rows;
-        
-        // Run the second query
-        db.pool.query(query2, (error, rows, fields) => {
-            
-            // Save the planets
-            let planets = rows;
-
-            // BEGINNING OF NEW CODE
-
-            // Construct an object for reference in the table
-            // Array.map is awesome for doing something with each
-            // element of an array.
-            let planetmap = {}
-            planets.map(planet => {
-                let id = parseInt(planet.customer_id, 10);
-
-                planetmap[id] = planet["customer_first_name"];
-            })
-
-            // Overwrite the homeworld ID with the name of the planet in the people object
-            people = people.map(person => {
-                return Object.assign(person, {homeworld: planetmap[person.homeworld]})
-            })
-
-            // END OF NEW CODE
-            return res.render('index', {data: people, planets: planets});
+        let query1 = "SELECT * FROM customer;";
+        db.pool.query(query1, function(error, rows, fields){
+            res.render('index', {data: rows});
         })
-    })
-});
-
-
-app.post('/add-person-form', function(req, res){
-    // Capture the incoming data and parse it back to a JS object
-    let data = req.body;
-
-    // Capture NULL values
-    let homeworld = parseInt(data['input-homeworld']);
-    if (isNaN(homeworld))
+    });
+    app.get('/customer.html', function(req, res)
     {
-        homeworld = 'NULL'
-    }
-
-    let age = parseInt(data['input-age']);
-    if (isNaN(age))
-    {
-        age = 'NULL'
-    }
-
-    // Create the query and run it on the database
-    query1 = `INSERT INTO customer (customer_first_name, customer_last_name, customer_email, customer_phone_num, customer_date_joined) VALUES ('${data['input-fname']}', '${data['input-lname']}', ${homeworld}, ${age}, 2024-02-29)`;
-    db.pool.query(query1, function(error, rows, fields){
-
-        // Check to see if there was an error
-        if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error)
-            res.sendStatus(400);
-        }
-
-        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM customer and
-        // presents it on the screen
-        else
-        {
-            res.redirect('/');
-        }
-    })
-});
-
-app.post('/add-person-ajax', function(req, res) 
-{
-    // Capture the incoming data and parse it back to a JS object
-    let data = req.body;
-
-    // Capture NULL values
-    let homeworld = parseInt(data.homeworld);
-    if (isNaN(homeworld))
-    {
-        homeworld = 'NULL'
-    }
-
-    let age = parseInt(data.age);
-    if (isNaN(age))
-    {
-        age = 'NULL'
-    }
-
-    // Create the query and run it on the database
-    query1 = `INSERT INTO customer (fname, lname, homeworld, age) VALUES ('${data.fname}', '${data.lname}', ${homeworld}, ${age})`;
-    db.pool.query(query1, function(error, rows, fields){
-
-        // Check to see if there was an error
-        if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error)
-            res.sendStatus(400);
-        }
-        else
-        {
-            // If there was no error, perform a SELECT * on customer
-            query2 = `SELECT customer.id, customer.fname, customer.lname, customer.homeworld, customer.age, bsg_planets.name 
-FROM customer 
-LEFT JOIN bsg_planets ON customer.homeworld = bsg_planets.id;`;
-            db.pool.query(query2, function(error, rows, fields){
-
-                // If there was an error on the second query, send a 400
-                if (error) {
-                    
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-                    console.log(error);
-                    res.sendStatus(400);
-                }
-                // If all went well, send the results of the query back.
-                else
-                {
-                    res.send(rows);
-                }
-            })
-        }
-    })
-});
+        let query1 = "SELECT * FROM customer;";
+        db.pool.query(query1, function(error, rows, fields){
+            res.render('index', {data: rows});
+        })
+    });
 
 app.delete('/delete-person-ajax/', function(req,res,next){
   let data = req.body;

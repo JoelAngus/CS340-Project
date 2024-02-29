@@ -32,7 +32,7 @@ app.get('/', function(req, res)
     {
         let query1 = "SELECT * FROM customer;";
         db.pool.query(query1, function(error, rows, fields){
-            res.render('index', {data: rows});
+            res.render('./index/customer', {data: rows});
         })
     });
 

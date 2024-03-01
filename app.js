@@ -39,7 +39,7 @@ app.get('/', function(req, res)
     // If there is a query string, we assume this is a search, and return desired results
     else
     {
-        query1 = `SELECT * FROM customer WHERE customer_last_name LIKE "${req.query.last}%"`
+        query1 = `SELECT * FROM customer WHERE customer_last_name LIKE "${req.query.lname}%"`
     }
 
     // Query 2 is the same in both cases
@@ -57,6 +57,8 @@ app.get('/', function(req, res)
             // Save the planets
             let planets = rows;
 
+            console.log(planets, rows)
+
             // BEGINNING OF NEW CODE
 
             // Construct an object for reference in the table
@@ -66,7 +68,7 @@ app.get('/', function(req, res)
             planets.map(planet => {
                 let id = parseInt(planet.id, 10);
 
-                planetmap[id] = planet["name"];
+                planetmap[id] = planet["customer_first_name"];
             })
 
             // Overwrite the homeworld ID with the name of the planet in the people object

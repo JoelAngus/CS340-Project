@@ -64,9 +64,9 @@ app.get('/', function(req, res)
             // element of an array.
             let planetmap = {}
             planets.map(planet => {
-                let id = parseInt(planet.customer_id, 10);
+                let id = parseInt(planet.id, 10);
 
-                planetmap[id] = planet["customer_first_name"];
+                planetmap[id] = planet["name"];
             })
 
             // Overwrite the homeworld ID with the name of the planet in the people object
@@ -75,7 +75,7 @@ app.get('/', function(req, res)
             })
 
             // END OF NEW CODE
-            return res.render('index', {data: people, planets: planets});
+            return res.render('index', {data: people, customer: planets});
         })
     })
 });
@@ -212,8 +212,10 @@ app.put('/put-person-ajax', function(req,res,next){
   let homeworld = parseInt(data.homeworld);
   let person = parseInt(data.fullname);
 
-  queryUpdateWorld = `UPDATE customer SET homeworld = ? WHERE customer.id = ?`;
-  selectWorld = `SELECT * FROM bsg_planets WHERE id = ?`
+  console.log(person, homeworld)
+
+  queryUpdateWorld = `UPDATE customer SET customer_email = ? WHERE customer.customer_id = ?`;
+  selectWorld = `SELECT * FROM customer WHERE customer_id = ?`
 
         // Run the 1st query
         db.pool.query(queryUpdateWorld, [homeworld, person], function(error, rows, fields){

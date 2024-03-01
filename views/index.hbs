@@ -78,7 +78,7 @@
     <label for="input-homeworld">Homeworld: </label>
     <select name="input-homeworld" id="input-homeworld">
         <option value="">Select a Planet</option>
-        {{#each planets}}
+        {{#each data}}
         <option value="{{this.id}}">{{this.name}}</option>
         {{/each}}
     </select>
@@ -103,23 +103,23 @@
     <a href='/'><button>Reset</button></a>
 </form>
 
-<h2>Updating A User's HomeWorld Form</h2>
-<p>To update a specific user's homeworld select their name from the drop-down menu on the left and their desired homeworld from the drop down menu on the right</p>
+<h2>Updating A Customer's Email</h2>
+<p>To update a specific user's email select their name from the drop-down menu on the left and enter the new email.</p>
 <form id="update-person-form-ajax">
 
     <label for="input-fullname">Full name: </label>
     <select name="input-fullname" id="mySelect">
         <option value="test">Select a Person</option>
         {{#each data}}
-        <option value="{{this.id}}">{{this.fname}} {{this.lname}}</option>
+        <option value="{{this.customer_id}}">{{this.customer_first_name}} {{this.customer_last_name}}</option>
         {{/each}}
     </select>
 
-    <label for="input-homeworld">Homeworld: </label>
+    <label for="input-homeworld">Email: </label>
     <select name="input-homeworld" id="input-homeworld-update">
         <option>Select a Planet</option>
-        {{#each planets}}
-        <option value="{{this.id}}">{{this.name}}</option>
+        {{#each data}}
+        <option value="{{this.customer_id}}">{{this.customer_email}}</option>
         {{/each}}
     </select>
     <input type="submit">

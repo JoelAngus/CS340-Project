@@ -1,6 +1,6 @@
 function deleteCustomer(customer_id) {
     // Put our data we want to send in a javascript object
-    console.log("Delete clucked")
+    console.log("Delete clucked");
     let data = {
         customer_id: customer_id
     };

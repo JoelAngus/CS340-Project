@@ -5,6 +5,7 @@ let updatePersonForm = document.getElementById('update-person-form-ajax');
 // Modify the objects we need
 updatePersonForm.addEventListener("submit", function (e) {
    
+    console.log("listening")
     // Prevent the form from submitting
     e.preventDefault();
 

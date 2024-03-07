@@ -197,7 +197,7 @@ app.delete('/delete-customer-ajax/', function(req,res,next){
 app.put('/put-person-ajax', function(req,res,next){                                   
   let data = req.body;
 
-  let homeworld = parseInt(data.homeworld);
+let homeworld = parseInt(data.homeworld);
   let person = parseInt(data.fullname);
 
   console.log(person, homeworld)

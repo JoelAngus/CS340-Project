@@ -182,7 +182,6 @@ app.delete('/delete-customer-ajax/', function(req,res,next){
   let personID = parseInt(data.customer_id);
   let deletecustomer= `DELETE FROM customer WHERE customer_ID = ?`;
 
-
         // Run the 1st query
         db.pool.query(deletecustomer, [personID], function(error, rows, fields){
             if (error) {
@@ -191,6 +190,7 @@ app.delete('/delete-customer-ajax/', function(req,res,next){
             console.log(error);
             res.sendStatus(400);
             }
+            location.reload();
 
 })});
 

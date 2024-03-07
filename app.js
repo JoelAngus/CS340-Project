@@ -5,7 +5,7 @@
 */
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 9923;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 9924;                 // Set a port number at the top so it's easy to change in the future
 
 // app.js
 const { engine } = require('express-handlebars');
@@ -177,15 +177,14 @@ LEFT JOIN bsg_planets ON customer.homeworld = bsg_planets.id;`;
     })
 });
 
-app.delete('/delete-person-ajax/', function(req,res,next){
+app.delete('/delete-customer-ajax/', function(req,res,next){
   let data = req.body;
-  let personID = parseInt(data.id);
-  let deleteBsg_Cert_People = `DELETE FROM bsg_cert_people WHERE pid = ?`;
-  let deletecustomer= `DELETE FROM customer WHERE id = ?`;
+  let personID = parseInt(data.customer_id);
+  let deletecustomer= `DELETE FROM customer WHERE customer_ID = ?`;
 
 
         // Run the 1st query
-        db.pool.query(deleteBsg_Cert_People, [personID], function(error, rows, fields){
+        db.pool.query(deletecustomer, [personID], function(error, rows, fields){
             if (error) {
 
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
@@ -193,19 +192,6 @@ app.delete('/delete-person-ajax/', function(req,res,next){
             res.sendStatus(400);
             }
 
-            else
-            {
-                // Run the second query
-                db.pool.query(deletecustomer, [personID], function(error, rows, fields) {
-
-                    if (error) {
-                        console.log(error);
-                        res.sendStatus(400);
-                    } else {
-                        res.sendStatus(204);
-                    }
-                })
-            }
 })});
 
 app.put('/put-person-ajax', function(req,res,next){                                   

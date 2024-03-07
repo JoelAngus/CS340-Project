@@ -34,6 +34,7 @@
             <td>{{this.customer_email}}</td>
             <td>{{this.customer_phone_num}}</td>
             <td>{{this.customer_date_joined}}</td>
+             <td><button onclick="deleteCustomer({{this.customer_id}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
@@ -129,23 +130,3 @@
 </form>
 
 <script src="./js/update_person.js"></script>
-
-
-<!-- Delete needs to be fixed -->
-<h2>Delete using an HTML form</h2>
-<p>To delete a  person, please enter their information below and click `Submit`!</p>
-<form id="add-person-form" method="POST" action="/add-person-form">
-    <label for="input-fname">First Name: </label>
-    <input type="text" name="input-fname" id="input-fname-ajax">
-    
-    <label for="input-lname">Last Name: </label>
-    <input type="text" name="input-lname" id="input-lname-ajax">
-
-    <label for="input-homeworld">Email: </label>
-    <input name="input-homeworld" id="input-homeworld-ajax">
-
-    <label for="input-age">Phone Number: </label>
-    <input type="text" name="input-age" id="input-age-ajax">
-
-    <input type="submit">
-</form>

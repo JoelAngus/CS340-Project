@@ -82,6 +82,63 @@ app.get('/', function(req, res)
     })
 });
 
+app.get('/employee', function(req, res)
+{
+    // Declare Query 1
+    let query1;
+
+    // If there is no query string, we just perform a basic SELECT
+    if (req.query.lname === undefined)
+    {
+        query1 = "SELECT * FROM employee;";
+    }
+
+    // If there is a query string, we assume this is a search, and return desired results
+    else
+    {
+        query1 = `SELECT * FROM employee WHERE employee_last_name LIKE "${req.query.lname}%"`
+    }
+
+    // Query 2 is the same in both cases
+    let query2 = "SELECT * FROM employee;";
+
+    // Run the 1st query
+    db.pool.query(query1, function(error, rows, fields){
+        
+        // Save the people
+        let people = rows;
+        
+        // Run the second query
+        db.pool.query(query2, (error, rows, fields) => {
+            
+            // Save the planets
+            let planets = rows;
+
+            console.log(planets, rows)
+
+            // BEGINNING OF NEW CODE
+
+            // Construct an object for reference in the table
+            // Array.map is awesome for doing something with each
+            // element of an array.
+            let planetmap = {}
+            planets.map(planet => {
+                let id = parseInt(planet.id, 10);
+
+                planetmap[id] = planet["employee_first_name"];
+            })
+
+            // Overwrite the homeworld ID with the name of the planet in the people object
+            people = people.map(person => {
+                return Object.assign(person, {homeworld: planetmap[person.homeworld]})
+            })
+
+            // END OF NEW CODE
+            return res.render('employee', {data: people, customer: planets});
+        })
+    })
+});
+
 
 app.post('/add-person-form', function(req, res){
     // Capture the incoming data and parse it back to a JS object
@@ -119,6 +176,47 @@ app.post('/add-person-form', function(req, res){
         else
         {
             res.redirect('/');
+        }
+    })
+});
+
+
+app.post('/add-employee-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let homeworld = parseInt(data['input-homeworld']);
+    if (isNaN(homeworld))
+    {
+        homeworld = 'NULL'
+    }
+
+    let age = parseInt(data['input-age']);
+    if (isNaN(age))
+    {
+        age = 'NULL'
+    }
+
+    // Create the query and run it on the database
+
+
+    query1 = `INSERT INTO employee (employee_first_name, employee_last_name, employee_email, employee_phone_num, employee_date_hired) VALUES ('${data['input-fname']}', '${data['input-lname']}', '${data['input-homeworld']}', ${age}, 2024-02-29)`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM customer and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/employee');
         }
     })
 });

@@ -2,6 +2,7 @@
 // Get the objects we need to modify
 let updatePersonForm = document.getElementById('update-person-form-ajax');
 
+console.log("This is update person ", updatePersonForm)
 // Modify the objects we need
 updatePersonForm.addEventListener("submit", function (e) {
    
@@ -32,6 +33,7 @@ updatePersonForm.addEventListener("submit", function (e) {
         homeworld: homeworldValue,
     }
     
+    
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT", "/put-person-ajax", true);
@@ -59,7 +61,7 @@ updatePersonForm.addEventListener("submit", function (e) {
 function updateRow(data, personID){
     let parsedData = JSON.parse(data);
     
-    let table = document.getElementById("people-table");
+    let table = document.getElementById("customer-table");
 
     for (let i = 0, row; row = table.rows[i]; i++) {
        //iterate through rows

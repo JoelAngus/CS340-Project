@@ -291,6 +291,22 @@ app.delete('/delete-customer-ajax/', function(req,res,next){
 
 })});
 
+app.delete('/delete-employee-ajax/', function(req,res,next){
+    let data = req.body;
+    let personID = parseInt(data.customer_id);
+    let deletecustomer= `DELETE FROM employee WHERE employee_ID = ?`;
+  
+          // Run the 1st query
+          db.pool.query(deletecustomer, [personID], function(error, rows, fields){
+              if (error) {
+  
+              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+              console.log(error);
+              res.sendStatus(400);
+              }
+  
+  })});
+
 app.put('/put-person-ajax', function(req,res,next){                                   
   let data = req.body;
 

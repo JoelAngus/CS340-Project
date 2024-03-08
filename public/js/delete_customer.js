@@ -16,6 +16,8 @@ function deleteCustomer(customer_id) {
 
             // Add the new data to the table
             deleteRow(customer_id);
+            location.reload();
+
         }
         else if (xhttp.readyState == 4 && xhttp.status != 204) {
             console.log("There was an error with the input.")
@@ -24,7 +26,37 @@ function deleteCustomer(customer_id) {
     }
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
-    location.reload();
+}
+
+function deleteCustomer(employee_id) {
+  // Put our data we want to send in a javascript object
+  console.log("Delete clucked");
+  let data = {
+      customer_id: employee_id
+  };
+  
+  // Setup our AJAX request
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("DELETE", "/delete-employee-ajax/", true);
+  xhttp.setRequestHeader("Content-type", "application/json");
+
+  // Tell our AJAX request how to resolve
+  xhttp.onreadystatechange = () => {
+      if (xhttp.readyState == 4 && xhttp.status == 204) {
+
+          // Add the new data to the table
+          deleteRow(customer_id);
+          location.reload();
+
+      }
+      else if (xhttp.readyState == 4 && xhttp.status != 204) {
+          console.log("There was an error with the input.")
+          console.log(xhttp.status);
+      }
+  }
+  // Send the request and wait for the response
+  xhttp.send(JSON.stringify(data));
+  location.reload();
 }
 
 function deleteRow(customer_id){

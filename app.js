@@ -82,7 +82,7 @@ app.get('/', function(req, res)
     })
 });
 
-app.get('/employee', function(req, res)
+app.get('/products', function(req, res)
 {
     // Declare Query 1
     let query1;
@@ -90,7 +90,7 @@ app.get('/employee', function(req, res)
     // If there is no query string, we just perform a basic SELECT
     if (req.query.lname === undefined)
     {
-        query1 = "SELECT * FROM employee;";
+        query1 = "SELECT * FROM products;";
     }
 
     // If there is a query string, we assume this is a search, and return desired results
@@ -100,7 +100,7 @@ app.get('/employee', function(req, res)
     }
 
     // Query 2 is the same in both cases
-    let query2 = "SELECT * FROM employee;";
+    let query2 = "SELECT * FROM products;";
 
     // Run the 1st query
     db.pool.query(query1, function(error, rows, fields){
@@ -134,7 +134,7 @@ app.get('/employee', function(req, res)
             })
 
             // END OF NEW CODE
-            return res.render('employee', {data: people, customer: planets});
+            return res.render('products', {data: people, customer: planets});
         })
     })
 });
@@ -220,6 +220,8 @@ app.post('/add-employee-form', function(req, res){
         }
     })
 });
+
+
 
 app.post('/add-person-ajax', function(req, res) 
 {

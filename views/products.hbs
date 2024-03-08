@@ -14,12 +14,11 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-              <td>"customer_id"</td>
-            <td>"customer_first_name"</td>
-            <td>customer_last_name</td>
-            <td>customer_email</td>
-            <td>customer_phone_num</td>
-            <td>customer_date_joined</td>
+              <td>"product_id"</td>
+            <td>"product_name"</td>
+            <td>product_is_clearance</td>
+            <td>product_type</td>
+            <td>product_retail_price</td>
              <td>Delete</td>
         </tr>
     </thead>
@@ -30,13 +29,12 @@
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
         <tr>
-            <td>{{this.customer_id}}</td>
-            <td>{{this.customer_first_name}}</td>
-            <td>{{this.customer_last_name}}</td>
-            <td>{{this.customer_email}}</td>
-            <td>{{this.customer_phone_num}}</td>
-            <td>{{this.customer_date_joined}}</td>
-            <td><button onclick="deleteCustomer({{this.customer_id}})">Delete</button></td>
+            <td>{{this.product_id}}</td>
+            <td>{{this.product_name}}</td>
+            <td>{{this.product_is_clearance}}</td>
+            <td>{{this.product_type}}</td>
+            <td>{{this.product_retail_price}}</td>
+            <td><button onclick="deleteProduct({{this.product_id}})">Delete</button></td>
             
             
         </tr>
@@ -52,16 +50,16 @@
 <h2>Adding Data using an HTML form</h2>
 <p>To add a new person, please enter their information below and click `Submit`!</p>
 <form id="add-person-form" method="POST" action="/add-person-form">
-    <label for="input-fname">First Name: </label>
+    <label for="input-fname">Product Name: </label>
     <input type="text" name="input-fname" id="input-fname-ajax">
     
-    <label for="input-lname">Last Name: </label>
+    <label for="input-lname">Is Clearnce Item: </label>
     <input type="text" name="input-lname" id="input-lname-ajax">
 
-    <label for="input-homeworld">Email: </label>
+    <label for="input-homeworld">Product Type: </label>
     <input name="input-homeworld" id="input-homeworld-ajax">
 
-    <label for="input-age">Phone Number: </label>
+    <label for="input-age">Retail Price: </label>
     <input type="text" name="input-age" id="input-age-ajax">
 
     <input type="submit">

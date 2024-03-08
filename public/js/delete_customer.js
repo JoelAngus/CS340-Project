@@ -26,6 +26,7 @@ function deleteCustomer(customer_id) {
     }
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
+    location.reload();
 }
 
 function deleteEmployee(employee_id) {

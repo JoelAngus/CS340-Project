@@ -82,6 +82,63 @@ app.get('/', function(req, res)
     })
 });
 
+app.get('/employee', function(req, res)
+{
+    // Declare Query 1
+    let query1;
+
+    // If there is no query string, we just perform a basic SELECT
+    if (req.query.lname === undefined)
+    {
+        query1 = "SELECT * FROM employee;";
+    }
+
+    // If there is a query string, we assume this is a search, and return desired results
+    else
+    {
+        query1 = `SELECT * FROM employee WHERE employee_last_name LIKE "${req.query.lname}%"`
+    }
+
+    // Query 2 is the same in both cases
+    let query2 = "SELECT * FROM employee;";
+
+    // Run the 1st query
+    db.pool.query(query1, function(error, rows, fields){
+        
+        // Save the people
+        let people = rows;
+        
+        // Run the second query
+        db.pool.query(query2, (error, rows, fields) => {
+            
+            // Save the planets
+            let planets = rows;
+
+            console.log(planets, rows)
+
+            // BEGINNING OF NEW CODE
+
+            // Construct an object for reference in the table
+            // Array.map is awesome for doing something with each
+            // element of an array.
+            let planetmap = {}
+            planets.map(planet => {
+                let id = parseInt(planet.id, 10);
+
+                planetmap[id] = planet["employee_first_name"];
+            })
+
+            // Overwrite the homeworld ID with the name of the planet in the people object
+            people = people.map(person => {
+                return Object.assign(person, {homeworld: planetmap[person.homeworld]})
+            })
+
+            // END OF NEW CODE
+            return res.render('employee', {data: people, customer: planets});
+        })
+    })
+});
+
 app.get('/products', function(req, res)
 {
     // Declare Query 1
@@ -138,7 +195,6 @@ app.get('/products', function(req, res)
         })
     })
 });
-
 
 app.post('/add-person-form', function(req, res){
     // Capture the incoming data and parse it back to a JS object
@@ -295,7 +351,7 @@ app.delete('/delete-customer-ajax/', function(req,res,next){
 
 app.delete('/delete-employee-ajax/', function(req,res,next){
     let data = req.body;
-    let personID = parseInt(data.customer_id);
+    let personID = parseInt(data.employee_id);
     let deletecustomer= `DELETE FROM employee WHERE employee_ID = ?`;
   
           // Run the 1st query

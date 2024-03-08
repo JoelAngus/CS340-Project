@@ -28,11 +28,11 @@ function deleteCustomer(customer_id) {
     xhttp.send(JSON.stringify(data));
 }
 
-function deleteCustomer(employee_id) {
+function deleteEmployee(employee_id) {
   // Put our data we want to send in a javascript object
   console.log("Delete clucked");
   let data = {
-      customer_id: employee_id
+      employee_id: employee_id
   };
   
   // Setup our AJAX request
@@ -45,7 +45,7 @@ function deleteCustomer(employee_id) {
       if (xhttp.readyState == 4 && xhttp.status == 204) {
 
           // Add the new data to the table
-          deleteRow(customer_id);
+          deleteRow(employee_id);
           location.reload();
 
       }

@@ -1,7 +1,6 @@
 {{!-- Just some plain text --}}
 
-<h1>The server is running!</h1>
-<p>If you see this text, the server is <strong>definitely</strong> working!</p>
+<h1>Order Header</h1>
 
 {{!-- The Data from our Database --}}
 
@@ -14,12 +13,12 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-              <td>"customer_id"</td>
-            <td>"customer_first_name"</td>
-            <td>customer_last_name</td>
-            <td>customer_email</td>
-            <td>customer_phone_num</td>
-            <td>customer_date_joined</td>
+            <td>"order_header_id"</td>
+            <td>"customer_id"</td>
+            <td>"employee_id"</td>
+            <td>"order_date"</td>
+            <td>"is_return"</td>
+            <td>"is_online_order"</td>
              <td>Delete</td>
         </tr>
     </thead>
@@ -30,15 +29,13 @@
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
         <tr>
+            <td>{{this.order_header_id}}</td>
             <td>{{this.customer_id}}</td>
-            <td>{{this.customer_first_name}}</td>
-            <td>{{this.customer_last_name}}</td>
-            <td>{{this.customer_email}}</td>
-            <td>{{this.customer_phone_num}}</td>
-            <td>{{this.customer_date_joined}}</td>
-            <td><button onclick="deleteCustomer({{this.customer_id}})">Delete</button></td>
-            
-            
+            <td>{{this.employee_id}}</td>
+            <td>{{this.order_date}}</td>
+            <td>{{this.is_return}}</td>
+            <td>{{this.is_online_order}}</td>
+            <td><button onclick="deleteorder_header({{this.order_header_id}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
@@ -50,18 +47,18 @@
 
 <!-- /views/index.hbs -->
 <h2>Adding Data using an HTML form</h2>
-<p>To add a new person, please enter their information below and click `Submit`!</p>
+<p>To add a new order header, please enter their information below and click `Submit`!</p>
 <form id="add-person-form" method="POST" action="/add-person-form">
-    <label for="input-fname">First Name: </label>
+    <label for="input-fname">Order_allocation_id: </label>
     <input type="text" name="input-fname" id="input-fname-ajax">
     
-    <label for="input-lname">Last Name: </label>
+    <label for="input-lname">Order_item_id:</label>
     <input type="text" name="input-lname" id="input-lname-ajax">
 
-    <label for="input-homeworld">Email: </label>
+    <label for="input-homeworld">product_inventory_id: </label>
     <input name="input-homeworld" id="input-homeworld-ajax">
 
-    <label for="input-age">Phone Number: </label>
+    <label for="input-age">Allocated Quantity: </label>
     <input type="text" name="input-age" id="input-age-ajax">
 
     <input type="submit">
@@ -101,32 +98,32 @@
 
 
 <h2>Search Using an HTML Form</h2>
-<p>Search by last name using the field below. Partial last names are OK too!</p>
+<p>Search by Order_header_id using the field below.</p>
 <form id="search-person-html" method='GET' action='/'>
-    <label for="input-lname">Search by Last Name: </label>
+    <label for="input-lname">Search by order_header_id: </label>
     <input type="text" name="lname" id="input-lname-html-search">
     
     <input type="submit">
     <a href='/'><button>Reset</button></a>
 </form>
 
-<h2>Updating A Customer's Email</h2>
-<p>To update a specific user's email select their name from the drop-down menu on the left and enter the new email.</p>
+<h2>Updating is order online</h2>
+<p>To update if it is available online select their id from the drop-down menu on the left and enter the new quanity.</p>
 <form id="update-person-form-ajax">
 
-    <label for="input-fullname">Full name: </label>
+    <label for="input-fullname">ID: </label>
     <select name="input-fullname" id="mySelect">
-        <option value="test">Select a Person</option>
+        <option value="test">Select an ID</option>
         {{#each data}}
-        <option value="{{this.customer_id}}">{{this.customer_first_name}} {{this.customer_last_name}}</option>
+        <option value="{{this.order_header_id}}">{{this.order_header_id}}</option>
         {{/each}}
     </select>
 
-    <label for="input-homeworld">Email: </label>
+    <label for="input-homeworld">Is order online: </label>
     <select name="input-homeworld" id="input-homeworld-update">
-        <option>Select an email</option>
+        <option>Select 1 or 0</option>
         {{#each data}}
-        <option value="{{this.customer_id}}">{{this.customer_email}}</option>
+        <option value="{{this.is_online_order}}">{{this.is_online_order}}</option>
         {{/each}}
     </select>
     <input type="submit" >

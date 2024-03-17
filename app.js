@@ -196,6 +196,234 @@ app.get('/products', function(req, res)
     })
 });
 
+//fix all below until printed done
+app.get('/inventory', function(req, res)
+{
+    // Declare Query 1
+    let query1;
+
+    // If there is no query string, we just perform a basic SELECT
+    if (req.query.lname === undefined)
+    {
+        query1 = "SELECT * FROM inventory;";
+    }
+
+    // If there is a query string, we assume this is a search, and return desired results
+    else
+    {
+        query1 = `SELECT * FROM inventory WHERE location LIKE "${req.query.location}%"`
+    }
+
+    // Query 2 is the same in both cases
+    let query2 = "SELECT * FROM inventory;";
+
+    // Run the 1st query
+    db.pool.query(query1, function(error, rows, fields){
+        
+        // Save the people
+        let people = rows;
+        
+        // Run the second query
+        db.pool.query(query2, (error, rows, fields) => {
+            
+            // Save the planets
+            let planets = rows;
+
+            // BEGINNING OF NEW CODE
+
+            // Construct an object for reference in the table
+            // Array.map is awesome for doing something with each
+            // element of an array.
+            let planetmap = {}
+            planets.map(planet => {
+                let id = parseInt(planet.id, 10);
+
+                planetmap[id] = planet["product_inventory_id"];
+            })
+
+            // Overwrite the homeworld ID with the name of the planet in the people object
+            people = people.map(person => {
+                return Object.assign(person, {homeworld: planetmap[person.homeworld]})
+            })
+
+            // END OF NEW CODE
+            return res.render('inventory', {data: planets, customer: planets});
+        })
+    })
+});
+
+app.get('/order_header', function(req, res)
+{
+    // Declare Query 1
+    let query1;
+
+    // If there is no query string, we just perform a basic SELECT
+    if (req.query.lname === undefined)
+    {
+        query1 = "SELECT * FROM order_header;";
+    }
+
+    // If there is a query string, we assume this is a search, and return desired results
+    else
+    {
+        query1 = `SELECT * FROM order_header WHERE employee_last_name LIKE "${req.query.lname}%"`
+    }
+
+    // Query 2 is the same in both cases
+    let query2 = "SELECT * FROM order_header;";
+
+    // Run the 1st query
+    db.pool.query(query1, function(error, rows, fields){
+        
+        // Save the people
+        let people = rows;
+        
+        // Run the second query
+        db.pool.query(query2, (error, rows, fields) => {
+            
+            // Save the planets
+            let planets = rows;
+
+
+            // BEGINNING OF NEW CODE
+
+            // Construct an object for reference in the table
+            // Array.map is awesome for doing something with each
+            // element of an array.
+            let planetmap = {}
+            planets.map(planet => {
+                let id = parseInt(planet.id, 10);
+
+                planetmap[id] = planet["employee_first_name"];
+            })
+
+            // Overwrite the homeworld ID with the name of the planet in the people object
+            people = people.map(person => {
+                return Object.assign(person, {homeworld: planetmap[person.homeworld]})
+            })
+            // END OF NEW CODE
+            return res.render('order_header', {data: people, customer: people});
+        })
+    })
+});
+
+app.get('/order_item', function(req, res)
+{
+    // Declare Query 1
+    let query1;
+
+    // If there is no query string, we just perform a basic SELECT
+    if (req.query.lname === undefined)
+    {
+        query1 = "SELECT * FROM order_item;";
+    }
+
+    // If there is a query string, we assume this is a search, and return desired results
+    else
+    {
+        query1 = `SELECT * FROM employee WHERE order_item_id LIKE "${req.query.order_item_id}%"`
+    }
+
+    // Query 2 is the same in both cases
+    let query2 = "SELECT * FROM order_item;";
+
+    // Run the 1st query
+    db.pool.query(query1, function(error, rows, fields){
+        
+        // Save the people
+        let people = rows;
+        
+        // Run the second query
+        db.pool.query(query2, (error, rows, fields) => {
+            
+            // Save the planets
+            let planets = rows;
+
+            console.log(planets, rows)
+
+            // BEGINNING OF NEW CODE
+
+            // Construct an object for reference in the table
+            // Array.map is awesome for doing something with each
+            // element of an array.
+            let planetmap = {}
+            planets.map(planet => {
+                let id = parseInt(planet.id, 10);
+
+                planetmap[id] = planet["employee_first_name"];
+            })
+
+            // Overwrite the homeworld ID with the name of the planet in the people object
+            people = people.map(person => {
+                return Object.assign(person, {homeworld: planetmap[person.homeworld]})
+            })
+
+            // END OF NEW CODE
+            return res.render('order_item', {data: people, customer: people});
+        })
+    })
+});
+
+app.get('/order_allocation', function(req, res)
+{
+    // Declare Query 1
+    let query1;
+
+    // If there is no query string, we just perform a basic SELECT
+    if (req.query.lname === undefined)
+    {
+        query1 = "SELECT * FROM order_allocation;";
+    }
+
+    // If there is a query string, we assume this is a search, and return desired results
+    else
+    {
+        query1 = `SELECT * FROM order_allocation WHERE product_inventory_id LIKE "${req.query.product_inventory_id}%"`
+    }
+
+    // Query 2 is the same in both cases
+    let query2 = "SELECT * FROM order_allocation;";
+
+    // Run the 1st query
+    db.pool.query(query1, function(error, rows, fields){
+        
+        // Save the people
+        let people = rows;
+        
+        // Run the second query
+        db.pool.query(query2, (error, rows, fields) => {
+            
+            // Save the planets
+            let planets = rows;
+
+
+            // BEGINNING OF NEW CODE
+
+            // Construct an object for reference in the table
+            // Array.map is awesome for doing something with each
+            // element of an array.
+            let planetmap = {}
+            planets.map(planet => {
+                let id = parseInt(planet.id, 10);
+
+                planetmap[id] = planet["employee_first_name"];
+            })
+
+            // Overwrite the homeworld ID with the name of the planet in the people object
+            people = people.map(person => {
+                return Object.assign(person, {homeworld: planetmap[person.homeworld]})
+            })
+
+            console.log("START")
+            console.log(people)
+            console.log("Break")
+            console.log(planets)
+            // END OF NEW CODE
+            return res.render('order_allocation', {data: people, customer: people});
+        })
+    })
+});
+
 app.post('/add-person-form', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -403,6 +631,46 @@ let homeworld = parseInt(data.homeworld);
 })});
 
 
+app.post('/add-inventory-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let homeworld = parseInt(data['input-homeworld']);
+    if (isNaN(homeworld))
+    {
+        homeworld = 'NULL'
+    }
+
+    let age = parseInt(data['input-age']);
+    if (isNaN(age))
+    {
+        age = 'NULL'
+    }
+
+    // Create the query and run it on the database
+
+
+    query1 = `INSERT INTO inventory (product_inventory_id, product_id, location, onhand_quantity) VALUES ('${data.product_inventory_id}', '${data.product_id}', ${data.location}, ${data.onhand_quantity})`;
+
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM customer and
+        // presents it on the screen
+        else
+        {
+            res.redirect('/inventory');
+        }
+    })
+});
 
 /*
     LISTENER

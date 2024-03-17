@@ -1,7 +1,6 @@
 {{!-- Just some plain text --}}
 
-<h1>The server is running!</h1>
-<p>If you see this text, the server is <strong>definitely</strong> working!</p>
+<h1>Products</h1>
 
 {{!-- The Data from our Database --}}
 
@@ -48,7 +47,7 @@
 
 <!-- /views/index.hbs -->
 <h2>Adding Data using an HTML form</h2>
-<p>To add a new person, please enter their information below and click `Submit`!</p>
+<p>To add a product, please enter the information below and click `Submit`!</p>
 <form id="add-person-form" method="POST" action="/add-person-form">
     <label for="input-fname">Product Name: </label>
     <input type="text" name="input-fname" id="input-fname-ajax">
@@ -99,32 +98,32 @@
 
 
 <h2>Search Using an HTML Form</h2>
-<p>Search by last name using the field below. Partial last names are OK too!</p>
+<p>Search by product name using the field below. Partial last names are OK too!</p>
 <form id="search-person-html" method='GET' action='/'>
-    <label for="input-lname">Search by Last Name: </label>
+    <label for="input-lname">Search by Product Name: </label>
     <input type="text" name="lname" id="input-lname-html-search">
     
     <input type="submit">
     <a href='/'><button>Reset</button></a>
 </form>
 
-<h2>Updating A Customer's Email</h2>
-<p>To update a specific user's email select their name from the drop-down menu on the left and enter the new email.</p>
+<h2>Updating A Product's Price</h2>
+<p>To update a specific products's price select their name from the drop-down menu on the left and enter the new price.</p>
 <form id="update-person-form-ajax">
 
     <label for="input-fullname">Full name: </label>
     <select name="input-fullname" id="mySelect">
-        <option value="test">Select a Person</option>
+        <option value="test">Select a Product</option>
         {{#each data}}
-        <option value="{{this.customer_id}}">{{this.customer_first_name}} {{this.customer_last_name}}</option>
+        <option value="{{this.product_name}}">{{this.product_name}}</option>
         {{/each}}
     </select>
 
-    <label for="input-homeworld">Email: </label>
+    <label for="input-homeworld">Price: </label>
     <select name="input-homeworld" id="input-homeworld-update">
-        <option>Select an email</option>
+        <option>Select a new price</option>
         {{#each data}}
-        <option value="{{this.customer_id}}">{{this.customer_email}}</option>
+        <option value="{{this.product_retail_price}}">{{this.product_retail_price}}</option>
         {{/each}}
     </select>
     <input type="submit" >

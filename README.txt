@@ -3,7 +3,7 @@ References
 HTML and Javascript:
 
 
-    app.js and all handlebar files are adapted from the CS 340 nodejs starter code, which was provided in the course modules.
+    app.js, delete_customer.js, and update_customer.js and all handlebar files are adapted from the CS 340 nodejs starter code, which was provided in the course modules.
 
     The following link was first accessed on 2/27/2024:
 

@@ -1,5 +1,14 @@
 // App.js
 
+//Code adapted and expanded on from the CS340 nodeJS starter code 
+//    The following link was first accessed on 2/27/2024:
+//
+//      https://github.com/osu-cs340-ecampus/nodejs-starter-app
+//
+// For app.js, the original code was modified to be functional for the tables in our database, this meant including functionality
+// for more than one page, different sized tables with different inputs, and removing code which was not relevant to our project.
+
+
 /*
     SETUP
 */
@@ -153,7 +162,7 @@ app.get('/products', function(req, res)
     // If there is a query string, we assume this is a search, and return desired results
     else
     {
-        query1 = `SELECT * FROM employee WHERE employee_last_name LIKE "${req.query.lname}%"`
+        query1 = `SELECT * FROM products WHERE product_lname LIKE "${req.query.lname}%"`
     }
 
     // Query 2 is the same in both cases

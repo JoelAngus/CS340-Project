@@ -1,3 +1,12 @@
+//Code adapted and expanded on from the CS340 nodeJS starter code 
+//    The following link was first accessed on 2/27/2024:
+//
+//      https://github.com/osu-cs340-ecampus/nodejs-starter-app
+//
+// For delete_customer.js, the original code was modified to be functional for the tables in our database, this meant changing names to 
+// function with the rest of our code as long as including "reload" calls to better support multiple pages
+
+
 function deleteCustomer(customer_id) {
     // Put our data we want to send in a javascript object
     console.log("Delete clucked");

@@ -1,3 +1,11 @@
+//Code adapted and expanded on from the CS340 nodeJS starter code 
+//    The following link was first accessed on 2/27/2024:
+//
+//      https://github.com/osu-cs340-ecampus/nodejs-starter-app
+//
+// For update_customer.js, the original code was modified to be functional for the tables in our database, this meant changing names to 
+// function with the rest of our code as long as including "reload" calls to better support multiple pages.
+
 
 // Get the objects we need to modify
 let updatePersonForm = document.getElementById('update-person-form-ajax');
